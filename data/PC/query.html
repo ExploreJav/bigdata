@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>查询</title>
+    <!-- 公共文件 -->
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/fontawesome.css">
+    <link rel="stylesheet" href="./css/animation.css">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./css/letter.css">
+    <script src="./js/letter.js"></script>
+
+</head>
+
+<body>
+<!--浏览器不兼容提醒-->
+<div class="low-version_ie">
+    <div class="low-version_ie_warning middle">
+        <p class="center bold red"><span class="fa fa-exclamation-circle red"></span>系统检测到您的浏览器版本太低，建议立即升级浏览器或者切换到极速模式浏览。推荐使用<a
+                href="https://www.google.cn/chrome/" target="_blank"><span class="fa fa-chrome green"></span>Chrome</a>或者<a
+                href="http://www.firefox.com.cn/" target="_blank"><span class="fa fa-firefox green"></span>火狐</a>。</p>
+    </div>
+
+</div>
+
+<div class="topnav_wrapper clearfix">
+    <div class="topnav middle">
+        <!--右边24小时热线-->
+        <div class="phone-square fa fa-phone-square white  fa-lg">
+            <span>服务热线：400-101-6363（工作日9:00~17:30）</span>
+        </div>
+
+    </div>
+</div>
+
+<!--导航栏-->
+<div id="gy_nav_wper">
+    <div class="gy_nav px1000 clearfix">
+        <div class="gy_nav_l fl">
+            <a href="###">
+                <img src="images/gy_logo.png" alt="">
+            </a>
+        </div>
+        <ul class="gy_nav_c clearfix">
+            <li>
+                <a href="###">首页</a>
+            </li>
+            <li class="active">
+                <a href="###">信访申请</a>
+            </li>
+            <li>
+                <a href="###">信访查询</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--查询页面-->
+<div class="query-wrapper">
+    <div class="query middle clearfix">
+        <!--选项卡开始-->
+        <section id="tabbed" class="middle clearfix">
+            <!-- First tab input and label -->
+            <input id="t-1" name="tabbed-tabs" type="radio" checked="checked">
+            <label for="t-1" class="tabs shadow entypo-pencil">按信访件查询</label>
+            <!-- Second tab input and label -->
+            <input id="t-2" name="tabbed-tabs" type="radio">
+            <label for="t-2" class="tabs shadow entypo-paper-plane">按手机号码验证查询</label>
+            <!-- Tabs wrapper -->
+            <div class="wrapper shadow form-style-8 clearfix">
+
+                <!-- Tab 1 content -->
+                <div class="tab-1">
+                    <form>
+                        <input type="text" name="field1" placeholder="信访人姓名">
+                        <input type="number" name="field2" placeholder="信访件编号">
+                        <p class="error-msg fa fa-times-circle red">
+                            用户名或者密码不对，请重试
+                        </p>
+                        <input type="button" value="查询">
+                    </form>
+                </div>
+                <!-- / Tab 1 content -->
+
+                <!-- Tab 2 content -->
+                <div class="tab-2">
+                    <form>
+                        <input type="number" name="field1" placeholder="手机号码">
+                        <input type="number" name="field2" placeholder="短信验证码">
+                        <span class="msgs msgstab">获取短信验证码</span>
+                        <p class="error-msg fa fa-times-circle red">
+                            用户名或者密码不对，请重试
+                        </p>
+                        <input type="button" value="查询">
+                    </form>
+
+                </div>
+
+            </div>
+
+            <!--说明-->
+            <div class="tabtips">
+                <p>1、通过网上提交的信访申请，可在线查询结果，支持手机号码+验证码的方式，或者通过信访件编码查询。</p>
+                <p>2、通过现场、信件、电话等方式的信访，不能在线查询结果，可通过主动回复、电话、现场获取结果。</p>
+                <p>3、在线查询结果后，可对信访处理过程及结果进行满意度评价。</p>
+            </div>
+
+        </section>
+
+
+    </div>
+
+</div>
+
+
+<!--footer在这里-->
+<footer>
+    <div class="footer middle">
+        <ul class="address-link">
+            <li> 中共重庆市委重庆市人民政府信访办公室版权所有</li>
+            <li>地址：重庆市渝中区人民路214号 邮编:400015</li>
+            <li> ICP备案编号1111：渝ICP备11005966号</li>
+        </ul>
+        <ul class="img-link clearfix">
+            <li><a href="###"><img src="./images/cqnet110.png" alt=""></a></li>
+            <li><a href="http://bszs.conac.cn/sitename?method=show&id=060EF83873996874E053022819AC0CA1" target="_blank">
+                <img src="./images/red.png" alt=""></a></li>
+            <li>
+                <a href="http://121.43.68.40/exposure/jiucuo.html?site_code=5000000098&url=http%3A%2F%2Fwww.cqxfb.gov.cn%2F"
+                   target="_blank">
+                    <img src="./images/jiucuo.png" alt=""></a></li>
+        </ul>
+    </div>
+</footer>
+
+
+</body>
+
+</html>

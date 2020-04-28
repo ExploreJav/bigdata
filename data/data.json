@@ -1,0 +1,61 @@
+[
+  {
+    "grid": {
+      "top": 50,
+      "x": 50,
+      "x2": 50,
+      "y2": 50
+
+    },
+    "xAxis": {
+      "type": "category",
+      "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      "axisLine": {
+        "lineStyle": {
+          "width": 1,
+          "color": "#ffffff"
+        }
+      }
+    },
+    "yAxis": {
+      "type": "value",
+      "axisLine": {
+        "lineStyle": {
+          "width": 1,
+          "color": "#ffffff"
+        }
+      }
+    },
+    "graphic": [
+      {
+        "type": "image",
+        "id": "logo",
+        "left": 0,
+        "top": 0,
+        "z": 0,
+        "bounding": "raw",
+        "style": {
+          "image": "img/bk.png",
+          "width": 430,
+          "height": 300,
+          "opacity": 0.4
+        }
+      }
+    ],
+    "series": [
+      {
+        "data": [820, 932, 901, 934, 1290, 1330, 1320],
+        "type": "line",
+        "smooth": true,
+        "color": "#ff0000"
+      },
+      {
+        "data": [126, 62, 101, 334, 490, 1230, 620],
+        "type": "line",
+        "smooth": true,
+        "color": "#ffff00"
+      }
+    ]
+  }
+
+]

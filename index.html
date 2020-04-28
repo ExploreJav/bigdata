@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <meta http-equiv="content-type" content="text/html;charset=utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta content="always" name="referrer">
+     <meta name="theme-color" content="#2932e1">
+     <title>电力项目</title>
+     <!-- 引入 echarts.js -->
+     <script src="js/echarts.min.js"></script>
+     <script type="text/javascript" src="./bigdata/js/libs/dat.gui.min.js"></script>
+     <script type="text/javascript" src="./bigdata/js/jquery-3.4.1.min.js"></script>
+     <script src="js/socket.io.min.js"></script>
+     <link rel="stylesheet" href="./css/yearAndTower.css">
+     <style>
+          p {
+               color: white;
+               text-align: right;
+          }
+
+          .title {
+               background-image: url(./image/BTBJ.png);
+               background-repeat: no-repeat;
+               color: white;
+          }
+     </style>
+</head>
+<!---->
+
+<body style="background-image:url(./image/bj1.png);margin: 0px;padding: 0px;background-repeat: no-repeat">
+     <!-- 标题 -->
+     <div id="title"
+          style="position: absolute;width: 702px;height:106px;float: left;left:1149px;top:0px;bottom: 0px;background-image:url(./image/title.png);">
+     </div>
+     <!--年份与变电站数量对应表-->
+     <div class="year">
+          <div class="title">工程数量与年份对应表</div>
+          <div id="yearAndTower"></div>
+     </div>
+     <!--折单公里数-->
+     <div class="zhedanshu">
+          <div class="title">折单公里数与年份对应表</div>
+          <div id="tongjitu"></div>
+     </div>
+     <!--中间区域的地图-->
+     <!-- <div>
+          
+          <div id="ditu"
+               style="position: absolute;width: 1600px;height:1350px;float: left;left:700px;top:-15px;bottom: 0px;">
+          </div>
+         
+     </div> -->
+     <!--background-image:url(image/center.png);-->
+     <!--变电站总数-->
+     <!--200KV\500KV变电站-->
+     <div class="constructor">
+          <!--220kV变电站所对应的百分比-->
+          <div class="touchan">
+               <div id="touchan"></div>
+               <div class="gongcheng">220kv普通工程</div>
+          </div>
+          <!--550KV变电站所对应的百分比-->
+          <div class="sheji">
+               <div id="sheji"></div>
+               <div class="gongcheng">220kv扩建</div>
+          </div>
+          <!--800KV变电站所对应的百分比-->
+          <div class="zaijian">
+               <div id="zaijian"></div>
+               <div class="gongcheng">500kv普通工程</div>
+          </div>
+     </div>
+     <!--区域数据排行榜-->
+     <div class="top">
+          <div class="title">区域工程数量排行榜</div>
+          <!-- <div id="top5"></div> -->
+          <div class="eight">
+               <div id="top1" class="topeight">
+                    <div class="image"></div>
+                    <h3>江北区</h3>
+                    <span>工程数量：56</span>
+                    <span>变电站：129</span>
+               </div>
+               <div id="top2" class="topeight">
+                    <div class="image"></div>
+                    <h3>渝北区</h3>
+                    <span>工程数量：56</span>
+                    <span>变电站：129</span>
+               </div>
+               <div id="top3" class="topeight">
+                    <div class="image"></div>
+                    <h3>九龙坡</h3>
+                    <span>工程数量：56</span>
+                    <span>变电站：129</span>
+               </div>
+               <div id="top4" class="topeight">
+                    <div class="image"></div>
+                    <h3>涪陵</h3>
+                    <span>工程数量：56</span>
+                    <span>变电站：129</span>
+               </div>
+               <div id="top5" class="topeight">
+                    <div class="image"></div>
+                    <h3>南岸</h3>
+                    <span>工程数量：56</span>
+                    <span>变电站：129</span>
+               </div>
+               <div id="top6" class="topeight">
+                    <div class="image"></div>
+                    <h3>南川</h3>
+                    <span>工程数量：56</span>
+                    <span>变电站：129</span>
+               </div>
+               <div id="top7" class="topeight">
+                    <div class="image"></div>
+                    <h3>荣昌</h3>
+                    <span>工程数量：56</span>
+                    <span>变电站：129</span>
+               </div>
+               <div id="top8" class="topeight">
+                    <div class="image"></div>
+                    <h3>九龙坡</h3>
+                    <span>工程数量：56</span>
+                    <span>变电站：129</span>
+               </div>
+          </div>
+     </div>
+
+     <div id='middle'>
+          <div id="totalTower">变电站总数:160</div>
+          <div id='totalKm'>折单公里数:230432</div>
+     </div>
+
+     <!-- 主变容量 -->
+     <div class="mainpower">
+          <div class="title">不同主变容量对应工程数量</div>
+          <div id="tongJi1"></div>
+     </div>
+     <script id="post-vert-2" type="x-shader/x-vertex">
+          //摄像机景深效果
+                     varying vec2 vUv;
+      
+                     void main() {
+                          vUv = uv;
+                          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                     }
+     </script>
+     <script id="post-frag-2" type="x-shader/x-fragment">
+          varying vec2 vUv;
+                     uniform sampler2D tColor;
+                     uniform float textureWidth;
+                     uniform float textureHeight;
+      
+                     float getWeight(float dist, float maxDist){
+                          return 1.0 - dist/maxDist;
+                     }
+      
+                     void main() {
+                          vec3 blurColor = vec3(0.0);
+                          float coc = 0.0;
+                          const int cocBlurSize = 8;
+                          float cocBlurSizef = float(cocBlurSize);
+                          const int bokehBlurSize = 8;
+                          float bokehBlurSizef = float(bokehBlurSize);
+                          vec2 textureRatio = vec2(1.0/textureWidth, 1.0/textureHeight);
+                          vec3 sourceColor = texture2D(tColor, vUv).rgb;
+      
+                          // blur the coc
+                          float cocBlurWeightTotal = 0.0;
+                          for(int i=-cocBlurSize; i<cocBlurSize; i++)
+                              for(int j=-cocBlurSize; j<cocBlurSize; j++)
+                              {
+                                         vec2 dir =  vec2(i, j) * textureRatio;
+                                         float dist = length(dir);
+                                         if(dist > cocBlurSizef)
+                                              continue;
+                                         float weight = 1.0; // getWeight(dist, cocBlurSizef);
+                                         cocBlurWeightTotal += weight;
+                                         vec2 curUv = dir + vUv;
+                                         coc += weight * texture2D(tColor, curUv).a;
+                                    }
+                          coc /= cocBlurWeightTotal;
+                          float originalCoc = texture2D(tColor, vUv).a;
+      
+                          // according to https://developer.nvidia.com/gpugems/GPUGems3/gpugems3_ch28.html
+                          coc = 2.0 * max(originalCoc, coc) - originalCoc;
+      
+      
+                          float bokehBlurWeightTotal = 0.0;
+                          if (coc > 1e-5)
+                          {
+                               for(int i=-bokehBlurSize; i<bokehBlurSize; i++)
+                                    for(int j=-bokehBlurSize; j<bokehBlurSize; j++)
+                                    {
+                                         vec2 dir = vec2(i, j) * textureRatio;  // can optimize
+                                         float dist = length(dir);
+                                         if(dist > bokehBlurSizef)
+                                              continue;
+                                         vec2 curUv = dir + vUv;
+                                         float weight = getWeight(dist, bokehBlurSizef);
+                                         bokehBlurWeightTotal += weight;
+                                         blurColor +=  weight * texture2D(tColor, curUv).rgb;
+                                    }
+                               blurColor /= bokehBlurWeightTotal;
+      
+                               gl_FragColor.rgb = mix(sourceColor, blurColor, coc);
+                          }
+                          else
+                          {
+                               gl_FragColor.rgb = sourceColor;
+                          }
+                          gl_FragColor.a = 1.0;
+                     }
+     </script>
+
+     <script id="post-vert-1" type="x-shader/x-vertex">
+          varying vec2 vUv;
+      
+                     void main() {
+                          vUv = uv;
+                          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                     }
+     </script>
+     <script id="post-frag-1" type="x-shader/x-fragment">
+          #include <packing>
+      
+                      varying vec2 vUv;
+                      uniform sampler2D tColor;
+                      uniform sampler2D tDepth;
+                      uniform float cameraNear;
+                      uniform float cameraFar;
+                      uniform float focalDepth;
+                      uniform float farStart;
+                      uniform float farRange;
+                      uniform float nearStart;
+                      uniform float nearRange;
+                      uniform float textureWidth;
+                      uniform float textureHeight;
+      
+                      const int circleSize = 4;		//模糊数值
+      
+                      float readDepth( sampler2D depthSampler, vec2 coord ) {
+                          float fragCoordZ = texture2D( depthSampler, coord ).x;
+                          float viewZ = perspectiveDepthToViewZ( fragCoordZ, cameraNear, cameraFar );
+                          return viewZ;
+                          }
+      
+                          float getWeight(float dist, float maxDist){
+                               return 1.0 - dist/maxDist;
+                          }
+      
+                      vec3 getColorBlur(vec2 uv){
+                          vec2 curUv;
+                          vec3 color = vec3(0.0, 0.0, 0.0);
+                          vec2 textureRatio = vec2(1.0/textureWidth, 1.0/textureHeight);
+                               float weightTotal = 0.0;
+                               float circleSizef = float(circleSize);
+                          for(int i=-circleSize; i<circleSize; i++)
+                              for(int j=-circleSize; j<circleSize; j++)
+                              {
+                                         vec2 dir =  vec2(i, j) * textureRatio;
+                                         float dist = length(dir);
+                                  if(dist > float(circleSize))
+                                      continue;
+                                  curUv = uv + dir;
+                                  float depth = readDepth(tDepth, curUv);
+      
+                                         // background should not mix foregournd in this pass
+                                  if((-depth - focalDepth - farStart < 0.0))
+                                       continue;
+      
+                                         float weight = getWeight(dist, circleSizef);
+                                  color += weight * texture2D( tColor, curUv ).rgb;
+                                  weightTotal += getWeight(dist, circleSizef);
+                              }
+                          return color * (1.0 / weightTotal);
+                      }
+      
+                      void main() {
+                          vec3 color = texture2D( tColor, vUv ).rgb;
+                          float depth = readDepth( tDepth, vUv );
+      
+                          float depthVal =  -depth - focalDepth;
+                          float coc = 0.0;
+      
+                          if(depthVal < 0.0)
+                          {
+                              coc = (-depthVal - nearStart) / nearRange;
+                          }
+                          else
+                          {
+                              coc = (depthVal - farStart) / farRange;
+                          }
+      
+                          coc = clamp(coc, 0.0, 1.0);
+                               bool isForeGroundOrFocus = -depth - (focalDepth + farStart) < 0.0;
+      
+                               // this shader only handle background.
+                               //  "a" channel stores the coc value.
+                               if(isForeGroundOrFocus)
+                               {
+                                    gl_FragColor.rgb = color;
+                                    gl_FragColor.a = coc;
+                               }
+                               else
+                               {
+                                    vec3 colorBlur = getColorBlur(vUv);
+                                    vec3 colorMix = mix(color, colorBlur, coc);
+                                    gl_FragColor.rgb = vec3(colorMix);
+                               }
+      
+                      }
+     </script>
+
+     <script type="module">
+          import { Datas } from './bigdata/Datas.js'
+          import { MapChina3d } from './bigdata/MapChina3d.js'
+          import { addChart } from './js/addChart.js'
+          if (typeof module === 'object') {
+               window.jQuery = window.$ = module.exports;
+          };
+          //连接服务器
+          connectionServer();
+          addChart.init();
+          //折单线路统计图
+          setEchartsPie('touchan', {
+               value: [115, 59]
+          });
+          setEchartsPie('sheji', {
+               value: [35, 139]
+          });
+          setEchartsPie('zaijian', {
+               value: [34, 140]
+          });
+          // setInterval(function () {
+          //      setEchartsPie('touchan', {
+          //           value: [115, 59]
+          //      });
+          //      setEchartsPie('sheji', {
+          //           value: [35, 139]
+          //      });
+          //      setEchartsPie('zaijian', {
+          //           value: [34, 140]
+          //      });
+          //      addChart.init();
+          //     // yearAndTower();
+
+          // }, 10000)
+          //连接服务器  
+          function connectionServer() {
+               var namespace = "/";
+               window.appname = "html";
+               window.serverURL = "ws://192.168.13.13:3001" + namespace;
+               try {
+                    var scoket = io.connect(window.serverURL);
+                    window.mysocket = scoket;
+                    scoket.on("connect", function () {
+                         window.mysocket.emit("login", {
+                              appname: window.appname
+                         });
+                    });
+               } catch (err) {
+                    console.log("err");
+               }
+          }
+          //统计05年到19年每年修建的220KV与500Kv工程的数量
+          
+          
+          //设置饼图
+          function setEchartsPie(id, data) {
+               let $el = document.getElementById(id);
+               let myChart = echarts.init($el);
+               let total = 0;
+               data.value.forEach((res) => {
+                    total += parseFloat(res);
+               });
+               total = total;
+               var jiancheng = parseInt(data.value[0] / total * 100)
+               var name = data.type;
+               let option = {
+                    title: {
+                         zlevel: 0,
+                         text: [
+                              jiancheng + "%" + "\n" + data.value[0] + "个",
+                         ],
+                         rich: {
+                              value: {
+                                   color: '#303133',
+                                   fontSize: 20,
+                                   fontWeight: 'bold',
+                                   lineHeight: 40,
+                              },
+                              name: {
+                                   color: '#909399',
+                                   lineHeight: 20
+                              },
+                         },
+                         top: 'center',
+                         left: '100',
+                         textAlign: 'center',
+                         textStyle: {
+                              color: '#e4393c', //京东红
+                              fontStyle: 'normal', //主标题文字字体风格，默认normal，有italic(斜体),oblique(斜体)
+                              fontWeight: "bold", //可选normal(正常)，bold(加粗)，bolder(加粗)，lighter(变细)，100|200|300|400|500...
+                              fontFamily: "san-serif", //主题文字字体，默认微软雅黑
+                              fontSize: 20, //主题文字字体大小，默认为18px
+                              color: 'white',
+                         },
+                    },
+                    tooltip: { // 悬停指示
+                         trigger: 'item',
+                         formatter: "{b}: {c} ({d}%)"
+                    },
+                    legend: {
+                         orient: 'vertical',
+                         x: 'right',
+
+                         itemGap: 30,
+                         top: 'middle',
+                         align: 'left',
+                         icon: 'circle',
+                         formatter: function (name) {
+                              return name;
+                         },
+                         show: false
+                    },
+                    series: [{
+                         name: '访问来源',
+                         type: 'pie',
+                         radius: ['62%', '75%'],
+                         center: ['50%', '50%'],
+                         stillShowZeroSum: false,
+                         avoidLabelOverlap: false,
+                         itemStyle: {
+                              borderWidth: 5, //设置border的宽度有多大
+                              borderColor: '#fff',
+                         },
+                         zlevel: 1,
+                         label: {
+                              normal: {
+                                   padding: [30, 30, 30, 30],
+                                   backgroundColor: 'green',
+                                   show: false,
+                                   position: 'center',
+                                   formatter: [
+                                        '{value|￥{c}}',
+                                        '{name|{b}}'
+                                   ].join('\n'),
+                                   rich: {
+                                        value: {
+                                             color: '#303133',
+                                             fontSize: 40,
+                                             fontWeight: 'bold',
+                                             lineHeight: 40,
+                                        },
+                                        name: {
+                                             color: '#909399',
+                                             lineHeight: 20
+                                        },
+                                   },
+                              },
+                              emphasis: {
+                                   show: false,
+                                   textStyle: {
+                                        fontSize: '16',
+                                        fontWeight: 'bold'
+                                   }
+                              }
+                         },
+                         data: data.value
+                    }],
+                    color: ['green', 'white']
+               };
+               myChart.setOption(option);
+          }
+          var _map;
+          init();
+          function init()
+          {
+          //  Datas._gui = new dat.GUI();
+            _map = new MapChina3d();
+			_map.init2();
+			// setTimeout(()=>{
+			// 	_map.areaSelectHandler("face_yubei");
+			// },10000)
+
+          }
+          window.mysocket.on('dianjian',(msg)=>{
+               //_map.createMapLab([1000,300] , msg , msg,234,1042)
+               _map.areaSelectHandler("face_"+msg);
+              // addChart.hide('.year');
+               // setTimeout(()=>{
+               //      addChart.show('.year');
+               // },5000)
+               addChart.showNum(120,1203);
+              
+           })
+
+     </script>
+</body>
+
+</html>

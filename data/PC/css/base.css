@@ -1,0 +1,123 @@
+@charset "utf-8";
+
+/*基础样式，页面格式化*/
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    color: #333;
+}
+body {
+    background:#e3e3e3;
+    font-family: "microsoft yahei";
+    font-size: 14px;
+}
+
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var,
+optgroup {
+    font-style: normal;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    transition: 0.2s;
+    color: #909090;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #2B96CC;
+    font-weight: bold;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+ol,
+ul,
+li {
+    list-style: none
+}
+ul,
+li {
+    list-style-type: none;
+}
+img {
+    vertical-align: middle
+}
+
+img {
+    border: none;
+}
+/*作为公共样式的class*/
+/*位置样式*/
+.middle{
+    margin: 0 auto;
+}
+
+.center{
+    text-align: center;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+/*颜色系列*/
+.white{
+    color: #fff;
+}
+.bold{
+    font-weight: bold;
+}
+.red{
+    color:#f90000 ;
+}
+.gold{
+    color: #b4a078;
+}
+.orange{
+    color: #eb6625;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+.greybtn{
+    background: #555555;
+}
+.cursor{
+    cursor: pointer;
+}
+/* 移除type=number的箭头 */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type="number"]{
+  -moz-appearance: textfield;
+}
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
