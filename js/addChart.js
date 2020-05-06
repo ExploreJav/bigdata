@@ -659,7 +659,7 @@ var addChart = {
         this.setOption(this.touchangZhuBianOption, 'tongJi1');
         this.setOption(this.unilatKeralKilometreOption, 'tongjitu');
         this.setOption(this.yearAndTowerOption, 'yearAndTower');
-        this.showProvice('top2', 'imagePath');
+        //this.showProvice('top2', 'imagePath');
     },
     //元素消失的方法
     hide(elClass) {
