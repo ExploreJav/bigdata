@@ -57,8 +57,8 @@
 }
 .top {
   position: absolute;
-  width: 951px;
-  height: 570px;
+  width: 952px;
+  height: 521px;
   float: left;
   left: 2010px;
   top: 60px;
@@ -72,6 +72,8 @@
   justify-content: center;
   align-items: center;
   color: white;
+  padding: 0;
+  margin: 0;
 }
 .top .title {
   height: 45px;
@@ -82,8 +84,8 @@
   margin-bottom: 10px;
 }
 .top .eight {
-  width: 900px;
-  height: 525px;
+  width: 952px;
+  height: 476px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -91,10 +93,61 @@
   justify-content: space-evenly;
 }
 .top .eight div.topeight {
+  box-sizing: border-box;
   width: 25%;
-  height: 48%;
+  height: 50%;
   background-color: rgba(30, 37, 50, 0.5);
   background-clip: content-box;
+  position: relative;
+  border: 1px solid rgba(44, 59, 96, 0.5);
+}
+.top .eight div.topeight div {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+}
+.top .eight div.topeight div p {
+  text-align: left;
+}
+.top .eight div.topeight:nth-child(1) {
+  position: relative;
+  background: url(../image/CQdistrict/jiulongpo.png) no-repeat;
+  background-size: cover;
+}
+.top .eight div.topeight:nth-child(2) {
+  position: relative;
+  background: url(../image/CQdistrict/banan.png) no-repeat;
+  background-size: cover;
+}
+.top .eight div.topeight:nth-child(3) {
+  position: relative;
+  background: url(../image/CQdistrict/beibei.png) no-repeat;
+  background-size: cover;
+}
+.top .eight div.topeight:nth-child(4) {
+  position: relative;
+  background: url(../image/CQdistrict/bishan.png) no-repeat;
+  background-size: cover;
+}
+.top .eight div.topeight:nth-child(5) {
+  position: relative;
+  background: url(../image/CQdistrict/changshou.png) no-repeat;
+  background-size: cover;
+}
+.top .eight div.topeight:nth-child(6) {
+  position: relative;
+  background: url(../image/CQdistrict/chengkou.png) no-repeat;
+  background-size: cover;
+}
+.top .eight div.topeight:nth-child(7) {
+  position: relative;
+  background: url(../image/CQdistrict/jiangjin.png) no-repeat;
+  background-size: cover;
+}
+.top .eight div.topeight:nth-child(8) {
+  position: relative;
+  background: url(../image/CQdistrict/jiulongpo.png) no-repeat;
+  background-size: cover;
 }
 .top .eight div.topeight .image {
   width: 100%;

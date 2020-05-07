@@ -531,7 +531,8 @@ var addChart = {
             }
 
         },
-        series: [{
+        series: [
+            {
                 name: "总工程",
                 //每年对应的（200KV+500KV）工程的数量
                 data: [10, 14, 13, 8, 9, 9, 17, 8, 14, 13, 11, 12, 16, 10,
@@ -608,9 +609,7 @@ var addChart = {
             {
                 name: "500KV工程",
                 //05-19年每年对应的500KV工程的数量
-                data: [1, 0, 4, 3, 2, 1, 3, 2, 0, 3, 2, 3, 6, 0,
-                    4
-                ], //[11,26,42,51,65,76,94,103,121,135,145,157,177,188,201]
+                data: [1, 0, 4, 3, 2, 1, 3, 2, 0, 3, 2, 3, 6, 0, 4], //[11,26,42,51,65,76,94,103,121,135,145,157,177,188,201]
                 type: 'line',
                 symbol: 'square',
                 symbolSize: 5,
@@ -642,14 +641,126 @@ var addChart = {
                     }
                 },
             }
-        ]
+        ],
+        animationDurationUpdate: function (idx) {
+            // 越往后的数据时长越大
+            return idx * 10000;
+        }
     },
+    //在建和扩建比列
+    constructorArr:[150,40],
     //用来显示区域排行榜里面的8个省份
     showProvice(id, imagePath) {
         //设置背景图片
         document.getElementById(id).getElementsByClassName('image')[0].style.backgroundColor = 'purple';
     },
+    //展示新建和扩建
+    //[74,40]
+    showConstructor(id, data) {
+        let $el = document.getElementById(id);
+        let myChart = echarts.init($el);
+        let total = 0;
+        data.forEach((res) => {
+             total += parseFloat(res);
+        });
+        var jiancheng = parseFloat(data[0]/ total * 100).toFixed(2);
+        var name = data.type;
+        let option = {
+             title: {
+                  zlevel: 0,
+                  text: [
+                       jiancheng + "%" + "\n" + data[0] + "个",
+                  ],
+                  rich: {
+                       value: {
+                            color: '#303133',
+                            fontSize: 20,
+                            fontWeight: 'bold',
+                            lineHeight: 40,
+                       },
+                       name: {
+                            color: '#909399',
+                            lineHeight: 20
+                       },
+                  },
+                  top: 'center',
+                  left: '100',
+                  textAlign: 'center',
+                  textStyle: {
+                       color: '#e4393c', //京东红
+                       fontStyle: 'normal', //主标题文字字体风格，默认normal，有italic(斜体),oblique(斜体)
+                       fontWeight: "bold", //可选normal(正常)，bold(加粗)，bolder(加粗)，lighter(变细)，100|200|300|400|500...
+                       fontFamily: "san-serif", //主题文字字体，默认微软雅黑
+                       fontSize: 20, //主题文字字体大小，默认为18px
+                       color: 'white',
+                  },
+             },
+             tooltip: { // 悬停指示
+                  trigger: 'item',
+                  formatter: "{b}: {c} ({d}%)"
+             },
+             legend: {
+                  orient: 'vertical',
+                  x: 'right',
 
+                  itemGap: 30,
+                  top: 'middle',
+                  align: 'left',
+                  icon: 'circle',
+                  formatter: function (name) {
+                       return name;
+                  },
+                  show: false
+             },
+             series: [{
+                  name: '访问来源',
+                  type: 'pie',
+                  radius: ['62%', '75%'],
+                  center: ['50%', '50%'],
+                  stillShowZeroSum: false,
+                  avoidLabelOverlap: false,
+                  itemStyle: {
+                       borderWidth: 5, //设置border的宽度有多大
+                       borderColor: '#fff',
+                  },
+                  zlevel: 1,
+                  label: {
+                       normal: {
+                            padding: [30, 30, 30, 30],
+                            backgroundColor: 'green',
+                            show: false,
+                            position: 'center',
+                            formatter: [
+                                 '{value|￥{c}}',
+                                 '{name|{b}}'
+                            ].join('\n'),
+                            rich: {
+                                 value: {
+                                      color: '#303133',
+                                      fontSize: 40,
+                                      fontWeight: 'bold',
+                                      lineHeight: 40,
+                                 },
+                                 name: {
+                                      color: '#909399',
+                                      lineHeight: 20
+                                 },
+                            },
+                       },
+                       emphasis: {
+                            show: false,
+                            textStyle: {
+                                 fontSize: '16',
+                                 fontWeight: 'bold'
+                            }
+                       }
+                  },
+                  data: data
+             }],
+             color: ['green', 'white']
+        };
+        myChart.setOption(option);
+    },
     setOption(option, id) {
         var myChart = echarts.init(document.getElementById(id));
         myChart.setOption(option);
@@ -659,16 +770,18 @@ var addChart = {
         this.setOption(this.touchangZhuBianOption, 'tongJi1');
         this.setOption(this.unilatKeralKilometreOption, 'tongjitu');
         this.setOption(this.yearAndTowerOption, 'yearAndTower');
+        this.showConstructor('touchan',this.constructorArr,0);
+        this.showConstructor('sheji',this.constructorArr.reverse(),1);
         //this.showProvice('top2', 'imagePath');
     },
     //元素消失的方法
     hide(elClass) {
-        $(elClass).hide({
+        $(elClass).fadeOut({
             duration: 1000,
         })
     },
     show(elClass) {
-        $(elClass).show({
+        $(elClass).fadeIn({
             duration: 1000,
         })
     },

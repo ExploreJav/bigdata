@@ -60,8 +60,8 @@
 //区域工程前五名排行榜
 .top{
     position: absolute;
-    width: 951px;
-    height:570px;
+    width: 952px;
+    height:521px;
     float: left;
     left:2010px;
     top:60px;
@@ -76,6 +76,8 @@
     justify-content: center;
     align-items: center;
     color: white;
+    padding: 0;
+    margin: 0;
     .title{
         height: 45px;
         width: 358px;
@@ -85,8 +87,8 @@
         margin-bottom: 10px;
     }
     .eight{
-        width: 900px;
-        height:525px;
+        width: 952px;
+        height:476px;
         //background-color: green;
         display: flex;
         flex-direction: row;
@@ -94,11 +96,71 @@
         align-items: center;
         justify-content: space-evenly;
         div.topeight{
+            box-sizing: border-box;
             width: 25%;
-            height: 48%;
+            height: 50%;
             background-color: rgba(30, 37, 50,.5);
             // padding: 5px;
             background-clip: content-box;
+            position: relative;
+            border: 1px solid rgba(44, 59, 96,.5);
+           div{
+               position: absolute;
+               bottom: 0;
+               left: 10px;
+               p{
+                  text-align: left; 
+               }
+           }
+            &:nth-child(1){
+              //  background-color: red;
+                position: relative;
+                background: url(../image/CQdistrict/jiulongpo.png) no-repeat; 
+                background-size: cover; 
+            }
+            &:nth-child(2){
+                //  background-color: red;
+                  position: relative;
+                  background: url(../image/CQdistrict/banan.png) no-repeat; 
+                  background-size: cover; 
+              }
+              &:nth-child(3){
+                //  background-color: red;
+                  position: relative;
+                  background: url(../image/CQdistrict/beibei.png) no-repeat; 
+                  background-size: cover; 
+              }
+              &:nth-child(4){
+                //  background-color: red;
+                  position: relative;
+                  background: url(../image/CQdistrict/bishan.png) no-repeat; 
+                  background-size: cover; 
+              }
+              &:nth-child(5){
+                //  background-color: red;
+                  position: relative;
+                  background: url(../image/CQdistrict/changshou.png) no-repeat; 
+                  background-size: cover; 
+              }
+              &:nth-child(6){
+                //  background-color: red;
+                  position: relative;
+                  background: url(../image/CQdistrict/chengkou.png) no-repeat; 
+                  background-size: cover; 
+              }
+              &:nth-child(7){
+                //  background-color: red;
+                  position: relative;
+                  background: url(../image/CQdistrict/jiangjin.png) no-repeat; 
+                  background-size: cover; 
+              }
+              &:nth-child(8){
+                //  background-color: red;
+                  position: relative;
+                  background: url(../image/CQdistrict/jiulongpo.png) no-repeat; 
+                  background-size: cover; 
+              }
+           
             .image{
                 width:100%;
                 height: 61%;
