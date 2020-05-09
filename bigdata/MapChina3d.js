@@ -29,6 +29,7 @@ var MapChina3d = function()
 
     var _cistrictNames = [
         { en : "yubei" , cn : "渝北",totalapplications:999,totalLength:100435} ,
+        { en : "yuzhong" , cn : "渝中",totalapplications:999,totalLength:100435} ,
         { en : "wansheng" , cn : "万盛" ,totalapplications:123,totalLength:456} ,
         { en : "banan" , cn : "巴南",totalapplications:123,totalLength:456} ,
         { en : "changshou" , cn : "长寿",totalapplications:123,totalLength:456} ,
@@ -109,7 +110,7 @@ var MapChina3d = function()
     var _progress = 0.1;
 
     //var _mapWholeColor = 0x1c1827;
-    var _mapWholeColor = 0x151a33
+    var _mapWholeColor = 0x101420;
     //var _mapWholeColor = 0x031812
 
     var camera, scene, renderer, controls, stats;
@@ -676,7 +677,7 @@ var MapChina3d = function()
 
     this.drawSprites = function()
     {
-        var scaleB = .3;
+        var scaleB = .5;
         var size = [1000 , 300];
         var bx = 1;
         var by = 1;
@@ -839,18 +840,29 @@ var MapChina3d = function()
 
     this.cameraMoveHandler = function(mesh)
     {
-        var p1 = {x : _saveCameraLookAt.x , y : _saveCameraLookAt.y , z : _saveCameraLookAt.z};
-        var p2 = {x : mesh.position.x , y : mesh.position.y , z : mesh.position.z};
-
-        var tw0 = this.cameraLookAtTween(p1 , p2);
-        tw0.start();
-        var tw1 = this.cameraTween(_camera.position , mesh.cameraPosition);
+        _controls.enabled = false;
+        var p0 = {x : _camera.position.x , y : _camera.position.y , z : _camera.position.z};
+        var p1 = {x : mesh.cameraPosition.x , y : mesh.cameraPosition.y , z : mesh.cameraPosition.z };
+        var v0 = {
+            x0 : p0.x ,
+            y0 : p0.y ,
+            z0 : p0.z ,
+            x1 : _saveCameraLookAt.x ,
+            y1 : _saveCameraLookAt.y ,
+            z1 : _saveCameraLookAt.z
+        };
+        var v1 = {
+            x0 : p1.x ,
+            y0 : p1.y ,
+            z0 : p1.z ,
+            x1 : mesh.position.x ,
+            y1 : mesh.position.y ,
+            z1 : mesh.position.z
+        };
+        var tw1 = this.cameraTween(v0 , v1);
         tw1.start();
-
-        _tweens.push(tw0);
         _tweens.push(tw1);
     }
-
     this.meshSelectHandler = function(name)
     {
         for(var i = 0 ; i < _meshFaceProvince.length ; i ++)
@@ -911,15 +923,27 @@ var MapChina3d = function()
         return tw;
     }
 
-    this.cameraTween = function (p1 , p2 , time=1000)
+    this.cameraTween = function (p0 , p1 , time=2000)
     {
-        var tw = new TWEEN.Tween(p1);
-        tw.to(p2 , time).easing(TWEEN.Easing.Sinusoidal.InOut);
+        var tw = new TWEEN.Tween(p0);
+        tw.to(p1 , time).easing(TWEEN.Easing.Sinusoidal.InOut);
         var update = function ()
         {
-            _camera.position.set(p1.x , p1.y , p1.z);
+            console.log("camera moving....");
+            _camera.position.set(p0.x0 , p0.y0 , p0.z0);
+            _saveCameraLookAt = new THREE.Vector3(p0.x1 , p0.y1 , p0.z1);
+            _camera.lookAt( _saveCameraLookAt );
+            _controls.target.x = p0.x1;
+            _controls.target.y = p0.y1;
+            _controls.target.z = p0.z1;
+            _controls.update();
+        }
+        var com = function()
+        {
+            _controls.enabled = true;
         }
         tw.onUpdate(update);
+        tw.onComplete(com);
         return tw;
     }
 

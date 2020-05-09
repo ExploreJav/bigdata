@@ -20,7 +20,7 @@
           }
 
           .title {
-               background-image: url(./image/BTBJ.png);
+               /* background-image: url(./image/BTBJ.png); */
                background-repeat: no-repeat;
                color: white;
           }
@@ -33,14 +33,29 @@
      <div id="title"
           style="position: absolute;width: 702px;height:106px;float: left;left:1149px;top:0px;bottom: 0px;background-image:url(./image/title.png);">
      </div>
+     <!-- <div id="titleOfProj">
+         <div>
+               <img src='./image/litimage/projtitle.png'>工程统计
+         </div>
+     </div> -->
      <!--年份与变电站数量对应表-->
      <div class="year">
-          <div class="title">工程数量与年份对应表</div>
+          <div class="title">
+               <div>
+                    <img src='./image/litimage/projtitle.png'>
+                    <p>工程统计</p>
+              </div>
+          </div>
           <div id="yearAndTower"></div>
      </div>
      <!--折单公里数-->
      <div class="zhedanshu">
-          <div class="title">折单公里数与年份对应表</div>
+          <div class="title">
+               <div>
+                    <img src='./image/litimage/zhedan.png'>
+                    <p>折单公里统计</p>
+              </div>
+          </div>
           <div id="tongjitu"></div>
      </div>
      <!--200KV\500KV变电站-->
@@ -55,85 +70,129 @@
                <div id="sheji"></div>
                <div class="gongcheng">扩建工程</div>
           </div>
-          <!--800KV变电站所对应的百分比-->
-          <!-- <div class="zaijian">
-               <div id="zaijian"></div>
-               <div class="gongcheng">500kv普通工程</div>
-          </div> -->
      </div>
      <!--区域数据排行榜-->
      <div class="top">
-          <div class="title">区域工程数量排行榜</div>
+          <div class="title">
+               <div>
+                    <img src='./image/litimage/top.png'>
+                    <p>主变容量统计</p>
+              </div>
+          </div>
           <!-- <div id="top5"></div> -->
           <div class="eight">
-               <div id="top1" class="topeight" >
+               <div id="top0" class="topeight" >
                    <div>
-                         <p>江北区</p>
-                         <span>~ 工程数量：56</span>
-                         <span>~ 变电站：129</span>
+                         <p class="area">江北区</p>
+                         <span class="projNum">~ 工程数量：56</span>
+                         <span class="towerNum">~ 变电站：129</span>
                    </div>
                     
                </div>
+               <div id="top1" class="topeight">
+                    <div>
+                         <p class="area">江北区</p>
+                         <span class="projNum">~ 工程数量：56</span>
+                         <span class="towerNum">~ 变电站：129</span>
+                   </div>
+               </div>
                <div id="top2" class="topeight">
                     <div>
-                         <p>江北区</p>
-                         <span>~ 工程数量：56</span>
-                         <span>~ 变电站：129</span>
+                         <p class="area">江北区</p>
+                         <span class="projNum">~ 工程数量：56</span>
+                         <span class="towerNum">~ 变电站：129</span>
                    </div>
                </div>
                <div id="top3" class="topeight">
                     <div>
-                         <p>江北区</p>
-                         <span>~ 工程数量：56</span>
-                         <span>~ 变电站：129</span>
+                         <p class="area">江北区</p>
+                         <span class="projNum">~ 工程数量：56</span>
+                         <span class="towerNum">~ 变电站：129</span>
                    </div>
                </div>
                <div id="top4" class="topeight">
                     <div>
-                         <p>江北区</p>
-                         <span>~ 工程数量：56</span>
-                         <span>~ 变电站：129</span>
+                         <p class="area">江北区</p>
+                         <span class="projNum">~ 工程数量：56</span>
+                         <span class="towerNum">~ 变电站：129</span>
                    </div>
                </div>
                <div id="top5" class="topeight">
                     <div>
-                         <p>江北区</p>
-                         <span>~ 工程数量：56</span>
-                         <span>~ 变电站：129</span>
+                         <p class="area">江北区</p>
+                         <span class="projNum">~ 工程数量：56</span>
+                         <span class="towerNum">~ 变电站：129</span>
                    </div>
                </div>
                <div id="top6" class="topeight">
                     <div>
-                         <p>江北区</p>
-                         <span>~ 工程数量：56</span>
-                         <span>~ 变电站：129</span>
+                         <p class="area">江北区</p>
+                         <span class="projNum">~ 工程数量：56</span>
+                         <span class="towerNum">~ 变电站：129</span>
                    </div>
                </div>
                <div id="top7" class="topeight">
                     <div>
-                         <p>江北区</p>
-                         <span>~ 工程数量：56</span>
-                         <span>~ 变电站：129</span>
-                   </div>
-               </div>
-               <div id="top8" class="topeight">
-                    <div>
-                         <p>江北区</p>
-                         <span>~ 工程数量：56</span>
-                         <span>~ 变电站：129</span>
+                         <p class="area">江北区</p>
+                         <span class="projNum">~ 工程数量：56</span>
+                         <span class="towerNum">~ 变电站：129</span>
                    </div>
                </div>
           </div>
      </div>
-
+     <div class="rightMiddle">
+          <div id='bg'></div>
+          <div id='fiveArea'>
+               <div class="line">
+                   <div>
+                         <p>巴南区</p>
+                         <p>120</p>
+                         <p>km</p>
+                   </div>
+               </div>
+               <div class="line">
+                    <div>
+                         <p>巴南区</p>
+                         <p>120</p>
+                         <p>km</p>
+                   </div>
+               </div>
+               <div class="line">
+                    <div>
+                         <p>巴南区</p>
+                         <p>120</p>
+                         <p>km</p>
+                   </div>
+               </div>
+               <div class="line">
+                    <div>
+                         <p>巴南区</p>
+                         <p>120</p>
+                         <p>km</p>
+                   </div>
+               </div>
+               <div class="line">
+                    <div>
+                         <p>巴南区</p>
+                         <p>120</p>
+                         <p>km</p>
+                   </div>
+               </div>
+          </div>
+     </div>
      <div id='middle'>
-          <div id="totalTower">变电站总数:160</div>
-          <div id='totalKm'>折单公里数:230432</div>
+          <div id="totalTower">变电站总数:141个</div>
+          <div id='totalKm'>折单公里数:7304km</div>
      </div>
 
      <!-- 主变容量 -->
      <div class="mainpower">
-          <div class="title">不同主变容量对应工程数量</div>
+          <div class="title">
+               <div>
+                    <img src='./image/litimage/mainPower.png'>
+                    <p>主变容量统计</p>
+              </div>
+          </div>
           <div id="tongJi1"></div>
      </div>
      <script id="post-vert-2" type="x-shader/x-vertex">
@@ -319,10 +378,18 @@
           if (typeof module === 'object') {
                window.jQuery = window.$ = module.exports;
           };
+          //年份对应220kv，500kv工程数初始状态
           let yearData = ['05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19'];
           let typeOf220 = [10, 14, 13, 8, 9, 9, 17, 8, 14, 13, 11, 12, 16, 10,10];
           let typeOfTotal =  [9, 14, 9, 5, 7, 8, 14, 6, 14, 10, 9, 9, 10, 10,6];
           let typeOf500 =  [1, 0, 4, 3, 2, 1, 3, 2, 0, 3, 2, 3, 6, 0,4];
+
+          //每年对应的折单公里数
+          let xAxisData =  ['05', '06', '07', '08', '09', '10', 11, 12, 13, 14, 15, 16, 17, 18, 19, 'total'];
+          let year =  ['05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19'];
+          let totalKm = [0, 631, 1165, 2353, 2459, 3026, 3566, 4334, 4556, 5178, 5504, 5916, 6361, 7025, 7181, 0];
+          // let everyKm = [631, 534, 1188, 106, 567, 540, 768, 222, 622, 326, 412, 445, 664, 156,143, 7324]
+          let everyKm = [631, 534, 1188, 106, 567, 540, 768, 222, 622, 326, 412, 445, 664, 156,143];
           //连接服务器
           connectionServer();
           addChart.init();
@@ -330,7 +397,7 @@
           function connectionServer() {
                var namespace = "/";
                window.appname = "html";
-               window.serverURL = "ws://192.168.13.13:3001" + namespace;
+               window.serverURL = "ws://192.168.22.55:3001" + namespace;
                try {
                     var scoket = io.connect(window.serverURL);
                     window.mysocket = scoket;
@@ -366,7 +433,7 @@
                addChart.showNum(120,1203);
               
            })
-           //用来设置年份
+           //用来设置年份与220kv，500kv工程数
            window.mysocket.on('dianjianYearOfProj',(msg)=>{
                          addChart.hide('.year');
                          addChart.yearAndTowerOption.xAxis.data = msg.year;
@@ -375,7 +442,24 @@
                          addChart.yearAndTowerOption.series[1].data =  msg.num220
                          addChart.yearAndTowerOption.series[2].data = msg.num500;
                          addChart.setOption(addChart.yearAndTowerOption, 'yearAndTower');
-                         addChart.show('.year')
+                         addChart.show('.year');
+
+                         //设置每年的折单公里数
+                         addChart.hide('.zhedanshu');
+                         let cloneArr = msg.year.concat();
+                         cloneArr.push('total')
+                         addChart.unilatKeralKilometreOption.xAxis.data = cloneArr;
+                         console.log(newArr(everyKm));
+                         addChart.unilatKeralKilometreOption.series[0].data = newArr(msg.km);
+                         addChart.unilatKeralKilometreOption.series[1].data = sum(msg.km);
+                         addChart.setOption(addChart.unilatKeralKilometreOption, 'tongjitu');
+                         // addChart.yearAndTowerOption.xAxis.data = msg.year;
+                         // let totalArr = getArr( msg.num220,msg.num500);
+                         // addChart.yearAndTowerOption.series[0].data =  totalArr;
+                         // addChart.yearAndTowerOption.series[1].data =  msg.num220
+                         // addChart.yearAndTowerOption.series[2].data = msg.num500;
+                         // addChart.setOption(addChart.yearAndTowerOption, 'yearAndTower');
+                         addChart.show('.zhedanshu');
                         
            })
            window.mysocket.on('dianjianCapacity',(msg)=>{
@@ -393,10 +477,37 @@
                          addChart.showConstructor('sheji',msg.reverse());
                         
            })
+           window.mysocket.on('dianjianKm',(msg)=>{
+                         addChart.hide('.zhedanshu');
+                         addChart.show('.zhedanshu');
+                         addChart.unilatKeralKilometreOption.xAxis.data('touchan',msg);
+                         addChart.showConstructor('sheji',msg.reverse());
+                        
+           })
           
-          
-          
-          
+           //求数组的和并加入数组
+           function sum(arr){
+               let newArr = arr.concat();
+               let sum =  newArr.reduce((sum1,value)=>{
+                   return sum1+value;
+              },0);
+              newArr.push(sum);
+              return newArr;
+          }
+          //放回一个新数组，此数组数为原数组两两相加
+          function newArr(arr){
+               let newArray = [];
+               let total = 0;
+               newArray.push(total);
+               for (let index = 0; index < arr.length; index++) {
+                    const element = arr[index];
+                    total += element;
+                    newArray.push(total);
+               }
+               newArray = newArray.splice(0,newArray.length-1);
+               newArray.push(0);
+               return newArray;
+          }
           
            function getArr(arr1,arr2){
                let totalArr = [];
@@ -409,7 +520,13 @@
                }
                return totalArr;
            }
-
+          //通过数组设置每个区域的背景图片
+          // function setBgImgByArr(arr){
+          //      for (let index = 0; index < arr.length; index++) {
+          //           const element = arr[index];
+          //           addChart.showProvice(top+index,'url');
+          //      }
+          // }
      </script>
 </body>
 

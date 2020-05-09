@@ -248,7 +248,7 @@ var addChart = {
                         0, 0, 0, 1,
                         [{
                                 offset: 0,
-                                color: '#2378f7'
+                                color: 'rgb(207,182,84)'
                             },
                             {
                                 offset: 0.7,
@@ -366,7 +366,8 @@ var addChart = {
             }
 
         },
-        series: [{
+        series: [
+            {
                 name: '辅助',
                 type: 'bar',
                 stack: '总量',
@@ -452,14 +453,14 @@ var addChart = {
     yearAndTowerOption: {
         legend: {
             orient: 'vertical',
-            x: 810,
+            x: 830,
             y: 0,
             icon: 'pie',
             color: ['#4472C5', '#ED7C30', '#80FF80'],
             data: ['总工程', '220KV工程', '500KV工程'],
             textStyle: { //图例文字的样式
                 color: 'white',
-                fontSize: 20
+                fontSize: 13
             },
 
             //backgroundColor:'rgba(100,0,100,0.5)',
@@ -616,7 +617,7 @@ var addChart = {
                 smooth: true,
                 lineStyle: {
                     normal: {
-                        color: 'yellow',
+                        color: 'rgb(52,79,120)',
                         width: 5,
                         type: 'dashed'
                     }
@@ -625,7 +626,7 @@ var addChart = {
                     normal: {
                         borderWidth: 2,
                         borderColor: 'white',
-                        color: 'yellow',
+                        color: 'rgb(52,79,120)',
                         label: {
                             show: true,
                             textStyle: {
@@ -642,17 +643,20 @@ var addChart = {
                 },
             }
         ],
-        animationDurationUpdate: function (idx) {
-            // 越往后的数据时长越大
-            return idx * 10000;
-        }
     },
     //在建和扩建比列
     constructorArr:[150,40],
     //用来显示区域排行榜里面的8个省份
-    showProvice(id, imagePath) {
+    showProvice(id, imagePath,province,projNum,towerNum) {
         //设置背景图片
-        document.getElementById(id).getElementsByClassName('image')[0].style.backgroundColor = 'purple';
+        let element = document.getElementById(id);
+        element.style.backgroundImage = 'url(./image/CQdistrict/beibei.png)';
+         //设置区域名称
+        element.getElementsByClassName('area')[0].innerHTML = province;
+        //设置工程数量
+        element.getElementsByClassName('projNum')[0].innerHTML = '~ 工程数量：'+ projNum;
+         //设置变电站数量
+        element.getElementsByClassName('towerNum')[0].innerHTML = '~ 变电站：'+ towerNum;
     },
     //展示新建和扩建
     //[74,40]
@@ -715,7 +719,7 @@ var addChart = {
              series: [{
                   name: '访问来源',
                   type: 'pie',
-                  radius: ['62%', '75%'],
+                  radius: ['67%', '75%'],
                   center: ['50%', '50%'],
                   stillShowZeroSum: false,
                   avoidLabelOverlap: false,
@@ -757,7 +761,7 @@ var addChart = {
                   },
                   data: data
              }],
-             color: ['green', 'white']
+             color: ['rgb(204,199,180)', 'rgb(38,54,79)']
         };
         myChart.setOption(option);
     },
@@ -785,6 +789,7 @@ var addChart = {
             duration: 1000,
         })
     },
+    //变电站总数和折单公里数
     showNum(totalTower, totalKm) {
         //$(el).prepend('');
         $('#middle').fadeOut(2000);
@@ -794,7 +799,6 @@ var addChart = {
         $('#totalKm').text(totalKm);
         $('#middle').fadeIn(2000);
     }
-    //变电站总数和折单公里数
 }
 export {
     addChart
